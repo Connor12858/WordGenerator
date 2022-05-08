@@ -1,8 +1,4 @@
-import time
-import pyautogui
-import cv2
-
-alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()'
+alph = 'abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 word = alph[0]
 alphPos, wordLen = 0, 0
 
@@ -22,23 +18,10 @@ def ZSpot(point):
 
 
 if __name__ == "__main__":
-
-    # print('Commands in Pyautogui form to operate')
-    # command = input('Command to input: ')
-    print('5 seconds to click command prompt to bruteforce')
-    time.sleep(1)
-    print('4')
-    time.sleep(1)
-    print('3')
-    time.sleep(1)
-    print('2')
-    time.sleep(1)
-    print('1')
-    time.sleep(1)
-    print('0')
-    windowName = pyautogui.getActiveWindowTitle()
-
-    while cv2.getWindowProperty(windowName, cv2.WND_PROP_VISIBLE) < 1:
+    user = input('1. Run\n2. Use custom alphabet\n> ')
+    if user == '2':
+        alph = input("Custom Alphabet: ")
+    while 1:
         # Current spot increase
         word = word[:wordLen] + alph[alphPos] + word[wordLen + 1:]
 
@@ -66,6 +49,4 @@ if __name__ == "__main__":
             else:
                 word = word[:wordLen - 1] + alph[alph.index(word[wordLen - 1]) + 1] + word[wordLen:]
 
-        pyautogui.write(word)
-        pyautogui.press('enter')
-        pyautogui.press('enter')
+        print(word)
